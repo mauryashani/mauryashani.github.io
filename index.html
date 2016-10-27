@@ -11,6 +11,7 @@
 	<h2 id="networkType"> </h2>
                 <script type="text/javascript">
             networkConnectionType={};
+                    alert('shani');
             function networkInformation() {
                     var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
                     testData.connectionType = networkState;
@@ -46,7 +47,7 @@
 //                    dataLayer.push({
 //                    'networkConnectionType':networkConnectionType
 //                });
-               alert(networkConnectionType.networkName);
+               
                         document.getElementById('networkType').innerHTML=networkConnectionType.networkName
             }
             networkInformation();
