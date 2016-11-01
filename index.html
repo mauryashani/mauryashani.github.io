@@ -15,7 +15,7 @@
 //            networkConnectionType={};
 //            function networkInformation() {
 //                    var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
-//                
+//
 //                    var downMax=navigator.connection.downlinkMax || navigator.mozConnection.downlinkMax || navigator.webkitConnection.downlinkMax;
 //                    networkConnectionType.connectionSpeed = downMax*1000;
 //                    downMax = downMax*1000;
@@ -45,12 +45,51 @@
 //                    else{
 //                        networkConnectionType.networkName="none";
 //                    }
-//               
+//
 //                        document.getElementById('networkType').innerHTML=networkConnectionType.networkName
 //            }
 //            networkInformation();
-                    function networkInformation(){var a=navigator.connection.type||navigator.mozConnection.type||navigator.webkitConnection.type,b=navigator.connection.downlinkMax||navigator.mozConnection.downlinkMax||navigator.webkitConnection.downlinkMax;networkConnectionType.connectionSpeed=1e3*b,b=1e3*b,"cellular"==a?(b>=1e5&&(networkConnectionType.networkName="4G"),b>=42e3&&b<1e5&&(networkConnectionType.networkName="3G"),b<42e3&&(networkConnectionType.networkName="2G")):"wifi"==a?networkConnectionType.networkName="wifi":"unknown"==a?networkConnectionType.networkName="unknown":"ethernet"==a?networkConnectionType.networkName="ethernet":"other"==a?networkConnectionType.networkName="other":networkConnectionType.networkName="none",document.getElementById("networkType").innerHTML=networkConnectionType.networkName}networkConnectionType={},networkInformation();
+                    // function networkInformation(){var a=navigator.connection.type||navigator.mozConnection.type||navigator.webkitConnection.type,b=navigator.connection.downlinkMax||navigator.mozConnection.downlinkMax||navigator.webkitConnection.downlinkMax;networkConnectionType.connectionSpeed=1e3*b,b=1e3*b,"cellular"==a?(b>=1e5&&(networkConnectionType.networkName="4G"),b>=42e3&&b<1e5&&(networkConnectionType.networkName="3G"),b<42e3&&(networkConnectionType.networkName="2G")):"wifi"==a?networkConnectionType.networkName="wifi":"unknown"==a?networkConnectionType.networkName="unknown":"ethernet"==a?networkConnectionType.networkName="ethernet":"other"==a?networkConnectionType.networkName="other":networkConnectionType.networkName="none",document.getElementById("networkType").innerHTML=networkConnectionType.networkName}networkConnectionType={},networkInformation();
+
+                    networkConnectionType={};
+
+                    function networkInformation() {
+                      if(navigator.connection !=null){
+                        var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
+                        downMax=navigator.connection.downlinkMax || navigator.mozConnection.downlinkMax || navigator.webkitConnection.downlinkMax;
+                        var connectionSpeed = downMax*1000;
+                        if(connectionSpeed=='infinity'){
+                          networkType='wifi';
+                        }
+                        else if(connectionSpeed !="unknown"){
+                          if(connectionSpeed < 42000){
+                            networkType="2G";
+                          }
+                          else if(connectionSpeed>=42000 && connectionSpeed < 100000){
+                            networkType="3G";
+                          }
+                          else if(connectionSpeed>=100000){
+                            networkType="4G";
+                          }
+                        }
+                        else{
+                          if(networkState){
+                            if(networkState=="2"  || networkState=="3" ||networkState=="4" ||networkState=="5" || networkState=="none" || networkState=="bluetooth" || networkState=="cellular"){
+                              networkType="2G";
+                            }
+                            else if(networkState=='wifi' || networkState=='ethernet'){
+                              networkType="wifi";
+                            }
+                            else{
+                              networkType="unknown";
+                            }
+                          }
+                        }
+                        networkConnectionType.networkType=networkType;
+                        document.getElementById('networkType').innerHTML=networkType;
+                      }
+                    }
         </script>
-   
+
 	</body>
 </html>
