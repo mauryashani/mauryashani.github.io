@@ -53,7 +53,7 @@
 
                     networkConnectionType={};
 
-                    function networkInformation() {
+                    function networkInformation() { alert(navigator.connection);
                       if(navigator.connection !=null){
                         var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
                         downMax=navigator.connection.downlinkMax || navigator.mozConnection.downlinkMax || navigator.webkitConnection.downlinkMax;
@@ -85,9 +85,10 @@
                             }
                           }
                         }
-                        networkConnectionType.networkType=networkType;
-                        document.getElementById('networkType').innerHTML=networkType;
+
                       }
+                      networkConnectionType.networkType=networkType;
+                      document.getElementById('networkType').innerHTML=networkType;
                     }
         </script>
 
