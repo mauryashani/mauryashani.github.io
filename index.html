@@ -53,15 +53,15 @@
 
                     networkConnectionType={};
 
-                    function networkInformation() { alert(navigator.connection);
+                    function networkInformation() {
                       if(navigator.connection !=null){
                         var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
                         downMax=navigator.connection.downlinkMax || navigator.mozConnection.downlinkMax || navigator.webkitConnection.downlinkMax;
                         var connectionSpeed = downMax*1000;
-                        if(connectionSpeed=='infinity'){ alert('infinity case')
+                        if(connectionSpeed=='infinity'){
                           networkType='wifi';
                         }
-                        else if(connectionSpeed !="unknown"){alert('unknown case')
+                        else if(connectionSpeed !="unknown"){
                           if(connectionSpeed < 42000){alert('2g')
                             networkType="2G";
                           }
@@ -73,7 +73,7 @@
                           }
                         }
                         else{
-                          if(networkState){alert('networkState check')
+                          if(networkState){
                             if(networkState=="2"  || networkState=="3" ||networkState=="4" ||networkState=="5" || networkState=="none" || networkState=="bluetooth" || networkState=="cellular"){
                               networkType="2G";alert('2,3,4,5,none,bluetooth,cellular')
                             }
