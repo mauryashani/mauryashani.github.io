@@ -58,30 +58,30 @@
                         var networkState = navigator.connection.type || navigator.mozConnection.type || navigator.webkitConnection.type;
                         downMax=navigator.connection.downlinkMax || navigator.mozConnection.downlinkMax || navigator.webkitConnection.downlinkMax;
                         var connectionSpeed = downMax*1000;
-                        if(connectionSpeed=='infinity'){
+                        if(connectionSpeed=='infinity'){ alert('infinity case')
                           networkType='wifi';
                         }
-                        else if(connectionSpeed !="unknown"){
-                          if(connectionSpeed < 42000){
+                        else if(connectionSpeed !="unknown"){alert('unknown case')
+                          if(connectionSpeed < 42000){alert('2g')
                             networkType="2G";
                           }
-                          else if(connectionSpeed>=42000 && connectionSpeed < 100000){
+                          else if(connectionSpeed>=42000 && connectionSpeed < 100000){alert('3g')
                             networkType="3G";
                           }
-                          else if(connectionSpeed>=100000){
+                          else if(connectionSpeed>=100000){alert('4g')
                             networkType="4G";
                           }
                         }
                         else{
-                          if(networkState){
+                          if(networkState){alert('networkState check')
                             if(networkState=="2"  || networkState=="3" ||networkState=="4" ||networkState=="5" || networkState=="none" || networkState=="bluetooth" || networkState=="cellular"){
-                              networkType="2G";
+                              networkType="2G";alert('2,3,4,5,none,bluetooth,cellular')
                             }
                             else if(networkState=='wifi' || networkState=='ethernet'){
-                              networkType="wifi";
+                              networkType="wifi";alert(' w wifi')
                             }
                             else{
-                              networkType="unknown";
+                              networkType="unknown";alert(' w unknown')
                             }
                           }
                         }
